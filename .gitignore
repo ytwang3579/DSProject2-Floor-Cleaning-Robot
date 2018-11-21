@@ -1,0 +1,8 @@
+# output files
+*.exe
+
+#testcase
+/10*
+
+#vscode
+/.vscode
