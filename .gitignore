@@ -1,9 +1,12 @@
 # output files
 *.exe
 *.pdf
+*.data
+*.path
 
 #testcase
 /10*
+/test
 
 #vscode
 /.vscode
