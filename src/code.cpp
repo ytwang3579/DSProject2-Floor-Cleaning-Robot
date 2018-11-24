@@ -89,30 +89,107 @@ void go_a_step(int& i, int& j, const vector<int>& bfs)
     if(j<N-1) if(map[T_RIGHT]=='0') if(bfs[T_RIGHT]==bfs[TARGET]-1){
         j++; return;
     }
-    if(i>0) if(bfs[T_UP]==bfs[TARGET]-1 || bfs[T_UP]==B){
+    if(i>0) if(bfs[T_UP]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_UP]==B)){
         i--; return;
     }
-    if(i<M-1) if(bfs[T_DOWN]==bfs[TARGET]-1 || bfs[T_DOWN]==B){
+    if(i<M-1) if(bfs[T_DOWN]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_DOWN]==B)){
         i++; return;
     }
-    if(j>0) if(bfs[T_LEFT]==bfs[TARGET]-1 || bfs[T_LEFT]==B){
+    if(j>0) if(bfs[T_LEFT]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_LEFT]==B)){
         j--; return;
     }
-    if(j<N-1) if(bfs[T_RIGHT]==bfs[TARGET]-1 || bfs[T_RIGHT]==B){
+    if(j<N-1) if(bfs[T_RIGHT]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_RIGHT]==B)){
         j++; return;
     }
 }
-void gothrough(int i, int j, const Action action)
+Action goback(int i, int j, const Action action, const Action last, int curB)
+{
+    switch(action){
+        case UP:
+            if(bfs_up[TARGET]<=curB){
+                while(bfs_up[TARGET]<B){
+                    go_a_step(i, j, bfs_up);
+                    ans.push(make_pair(i, j));
+                    map[TARGET] = 'D';
+                }
+                return action;
+            }
+            break;
+        case DOWN:
+            if(bfs_down[TARGET]<=curB){
+                while(bfs_down[TARGET]<B){
+                    go_a_step(i, j, bfs_down);
+                    ans.push(make_pair(i, j));
+                    map[TARGET] = 'D';
+                }
+                return action;
+            }
+            break;
+        case LEFT:
+            if(bfs_left[TARGET]<=curB){
+                while(bfs_left[TARGET]<B){
+                    go_a_step(i, j, bfs_left);
+                    ans.push(make_pair(i, j));
+                    map[TARGET] = 'D';
+                }
+                return action;
+            }
+            break;
+        case RIGHT:
+            if(bfs_right[TARGET]<=curB){
+                while(bfs_right[TARGET]<B){
+                    go_a_step(i, j, bfs_right);
+                    ans.push(make_pair(i, j));
+                    map[TARGET] = 'D';
+                }
+                return action;
+            }
+            break;
+    }
+    switch(last){
+        case UP:
+            while(bfs_up[TARGET]<B){
+                go_a_step(i, j, bfs_up);
+                ans.push(make_pair(i, j));
+                map[TARGET] = 'D';
+            }
+            break;
+        case DOWN:
+            while(bfs_down[TARGET]<B){
+                go_a_step(i, j, bfs_down);
+                ans.push(make_pair(i, j));
+                map[TARGET] = 'D';
+            }
+            break;
+        case LEFT:
+            while(bfs_left[TARGET]<B){
+                go_a_step(i, j, bfs_left);
+                ans.push(make_pair(i, j));
+                map[TARGET] = 'D';
+            }
+            break;
+        case RIGHT:
+            while(bfs_right[TARGET]<B){
+                go_a_step(i, j, bfs_right);
+                ans.push(make_pair(i, j));
+                map[TARGET] = 'D';
+            }
+            break;
+    }
+    return last;
+}
+Action gothrough(int i, int j, const Action action, const Action next)
 {
     if(action==ERROR){
         throw string("Error when going through path: There is no way for some element(s)\n");
-        return;
+        return ERROR;
     }
 
     //cout << action << ' ' << "dest:(" << i << ", " << j << ")\n";
+    int curB = B;
 
     switch(action){
-        //TODO: iterate through the destination and change the map value to label 'visited'
+        //TODO: check battery life for better path(s)
         case UP:
             while(bfs_up[TARGET]<B){
                 map[TARGET] = 'D';
@@ -122,13 +199,10 @@ void gothrough(int i, int j, const Action action)
             while(stk.empty()==false){
                 ans.push(stk.back());
                 stk.pop_back();
+                curB--;
             }
             i = ans.back().first; j = ans.back().second;
-            while(bfs_up[TARGET]<B){
-                go_a_step(i, j, bfs_up);
-                ans.push(make_pair(i, j));
-                map[TARGET] = 'D';
-            }
+            return goback(i, j, next, action, curB);
             break;
         case DOWN:
             while(bfs_down[TARGET]<B){
@@ -139,13 +213,10 @@ void gothrough(int i, int j, const Action action)
             while(stk.empty()==false){
                 ans.push(stk.back());
                 stk.pop_back();
+                curB--;
             }
             i = ans.back().first; j = ans.back().second;
-            while(bfs_down[TARGET]<B){
-                go_a_step(i, j, bfs_down);
-                ans.push(make_pair(i, j));
-                map[TARGET] = 'D';
-            }
+            return goback(i, j, next, action, curB);
             break;
         case LEFT:
             while(bfs_left[TARGET]<B){
@@ -156,13 +227,10 @@ void gothrough(int i, int j, const Action action)
             while(stk.empty()==false){
                 ans.push(stk.back());
                 stk.pop_back();
+                curB--;
             }
             i = ans.back().first; j = ans.back().second;
-            while(bfs_left[TARGET]<B){
-                go_a_step(i, j, bfs_left);
-                ans.push(make_pair(i, j));
-                map[TARGET] = 'D';
-            }
+            return goback(i, j, next, action, curB);
             break;
         case RIGHT:
             while(bfs_right[TARGET]<B){
@@ -173,13 +241,10 @@ void gothrough(int i, int j, const Action action)
             while(stk.empty()==false){
                 ans.push(stk.back());
                 stk.pop_back();
+                curB--;
             }
             i = ans.back().first; j = ans.back().second;
-            while(bfs_right[TARGET]<B){
-                go_a_step(i, j, bfs_right);
-                ans.push(make_pair(i, j));
-                map[TARGET] = 'D';
-            }
+            return goback(i, j, next, action, curB);
             break;
     }
 
@@ -265,7 +330,15 @@ void cleaning_naive()
         }
     }
 */
-    int curB = B;
+    int curi, curj, nexti, nextj;
+    Action curDir, nextDir;
+    bool lasttimeflag = true;
+
+    curi = dest.back().first.first;
+    curj = dest.back().first.second;
+    curDir = nextaction(curi, curj);
+    dest.pop_back();
+
     while(dest.empty()==false){
         int i = dest.back().first.first;
         int j = dest.back().first.second;
@@ -276,16 +349,49 @@ void cleaning_naive()
             dest.pop_back(); continue;
         }
 
+        nexti = i;
+        nextj = j;
+        nextDir = nextaction(nexti, nextj);
+
         try{
-            gothrough(i, j, nextaction(i, j));
+            //cout << curi << ' ' << curj << ' ' << curDir << ' ' << nextDir << '\n';
+            nextDir = gothrough(curi, curj, curDir, nextDir);
         } catch(string c){cout << c;}
 
-        dest.pop_back();
+        while(map[TARGET]!='0'){
+            //cout << i << ' ' << j << ' ' << map[TARGET] << '\n';
+            dest.pop_back();
+            if(dest.empty()==true){
+                lasttimeflag = false;
+                break;
+            }
+            i = dest.back().first.first; j = dest.back().first.second;
+        }
+        
+
+        curi = i;
+        curj = j;
+        curDir = nextaction(i, j);
+        if(dest.empty()==false) dest.pop_back();
+        else break;
+
+        //cout << i << ' ' << j << ' ' << map[TARGET] << '\n';
+        //cout << "**\n";
+        //cout << curDir << "<-" << nextDir << '\n';
+        if(curDir!=nextDir){
+            if(curDir==UP) curDir = gothrough(ri-1, rj, nextDir, curDir);
+            else if(curDir==DOWN) curDir = gothrough(ri+1, rj, nextDir, curDir);
+            else if(curDir==LEFT) curDir = gothrough(ri, rj-1, nextDir, curDir);
+            else if(curDir==RIGHT) curDir = gothrough(ri, rj+1, nextDir, curDir);
+        }
     }
     
-    
-
-
+    try{
+        if(lasttimeflag){
+            nextDir = nextaction(curi, curj);
+            gothrough(curi, curj, curDir, curDir);
+        }
+    } catch(string c){cout << c;}
 
 }
 
