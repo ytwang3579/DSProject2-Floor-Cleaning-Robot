@@ -27,7 +27,7 @@ vector<int> bfs_r, bfs_up, bfs_down, bfs_left, bfs_right;
 vector<int> BFS(int i, int j, vector<char> tmap, bool flag)
 {
 
-    vector<int> bfs(M*N,B);
+    vector<int> bfs(M*N,B+1);
     if(i<0 || j<0 || i>=M || j>=N) return bfs;
 
     queue<pair<int, int>> q;
@@ -42,7 +42,7 @@ vector<int> BFS(int i, int j, vector<char> tmap, bool flag)
         i = ptr.first;
         j = ptr.second;
         int cnt = bfs[TARGET] + 1;
-        if((cnt>(B/2)) && flag==0) break;
+        if((cnt>B) && flag==0) break;
         //cout << i << " " << j << ' ' << cnt << '\n';
 
         if(i>0) if(tmap[T_UP]=='0') {
@@ -73,9 +73,11 @@ vector<int> BFS(int i, int j, vector<char> tmap, bool flag)
         q.pop();
 
     }
+    i = ri; j = rj;
+    bfs[TARGET] = B;
     return bfs;
 }
-void go_a_step(int& i, int& j, const vector<int>& bfs)
+void go_a_step(int& i, int& j, const vector<int>& bfs, const Action action)
 {
     if(i>0) if(map[T_UP]=='0') if(bfs[T_UP]==bfs[TARGET]-1){
         i--; return;
@@ -89,16 +91,16 @@ void go_a_step(int& i, int& j, const vector<int>& bfs)
     if(j<N-1) if(map[T_RIGHT]=='0') if(bfs[T_RIGHT]==bfs[TARGET]-1){
         j++; return;
     }
-    if(i>0) if(bfs[T_UP]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_UP]==B)){
+    if(i>0) if(bfs[T_UP]==bfs[TARGET]-1 || ((action==DOWN)&&bfs[T_UP]==B)){
         i--; return;
     }
-    if(i<M-1) if(bfs[T_DOWN]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_DOWN]==B)){
+    if(i<M-1) if(bfs[T_DOWN]==bfs[TARGET]-1 || ((action==UP)&&bfs[T_DOWN]==B)){
         i++; return;
     }
-    if(j>0) if(bfs[T_LEFT]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_LEFT]==B)){
+    if(j>0) if(bfs[T_LEFT]==bfs[TARGET]-1 || ((action==RIGHT)&&bfs[T_LEFT]==B)){
         j--; return;
     }
-    if(j<N-1) if(bfs[T_RIGHT]==bfs[TARGET]-1 || (bfs[TARGET]==1&&bfs[T_RIGHT]==B)){
+    if(j<N-1) if(bfs[T_RIGHT]==bfs[TARGET]-1 || ((action==LEFT)&&bfs[T_RIGHT]==B)){
         j++; return;
     }
 }
@@ -108,69 +110,133 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
         case UP:
             if(bfs_up[TARGET]<=curB){
                 while(bfs_up[TARGET]<B){
-                    go_a_step(i, j, bfs_up);
+                    go_a_step(i, j, bfs_up, action);
                     ans.push(make_pair(i, j));
                     map[TARGET] = 'D';
                 }
                 return action;
+            } else if(last==DOWN){
+                if(bfs_left[TARGET]<=curB){
+                    while(bfs_left[TARGET]<B){
+                        go_a_step(i, j, bfs_left, LEFT);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return LEFT;
+                } else if(bfs_right[TARGET]<=curB){
+                    while(bfs_right[TARGET]<B){
+                        go_a_step(i, j, bfs_right, RIGHT);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return RIGHT;
+                }
             }
             break;
         case DOWN:
             if(bfs_down[TARGET]<=curB){
                 while(bfs_down[TARGET]<B){
-                    go_a_step(i, j, bfs_down);
+                    go_a_step(i, j, bfs_down, action);
                     ans.push(make_pair(i, j));
                     map[TARGET] = 'D';
                 }
                 return action;
+            } else if(last==UP){
+                if(bfs_left[TARGET]<=curB){
+                    while(bfs_left[TARGET]<B){
+                        go_a_step(i, j, bfs_left, LEFT);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return LEFT;
+                } else if(bfs_right[TARGET]<=curB){
+                    while(bfs_right[TARGET]<B){
+                        go_a_step(i, j, bfs_right, RIGHT);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return RIGHT;
+                }
             }
             break;
         case LEFT:
             if(bfs_left[TARGET]<=curB){
                 while(bfs_left[TARGET]<B){
-                    go_a_step(i, j, bfs_left);
+                    go_a_step(i, j, bfs_left, action);
                     ans.push(make_pair(i, j));
                     map[TARGET] = 'D';
                 }
                 return action;
+            } else if(last==RIGHT){
+                if(bfs_up[TARGET]<=curB){
+                    while(bfs_up[TARGET]<B){
+                        go_a_step(i, j, bfs_up, UP);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return UP;
+                } else if(bfs_down[TARGET]<=curB){
+                    while(bfs_down[TARGET]<B){
+                        go_a_step(i, j, bfs_down, DOWN);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return DOWN;
+                }
             }
             break;
         case RIGHT:
             if(bfs_right[TARGET]<=curB){
                 while(bfs_right[TARGET]<B){
-                    go_a_step(i, j, bfs_right);
+                    go_a_step(i, j, bfs_right, action);
                     ans.push(make_pair(i, j));
                     map[TARGET] = 'D';
                 }
                 return action;
+            } else if(last==RIGHT){
+                if(bfs_up[TARGET]<=curB){
+                    while(bfs_up[TARGET]<B){
+                        go_a_step(i, j, bfs_up, UP);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return UP;
+                } else if(bfs_down[TARGET]<=curB){
+                    while(bfs_down[TARGET]<B){
+                        go_a_step(i, j, bfs_down, DOWN);
+                        ans.push(make_pair(i, j));
+                        map[TARGET] = 'D';
+                    }
+                    return DOWN;
+                }
             }
             break;
     }
     switch(last){
         case UP:
             while(bfs_up[TARGET]<B){
-                go_a_step(i, j, bfs_up);
+                go_a_step(i, j, bfs_up, last);
                 ans.push(make_pair(i, j));
                 map[TARGET] = 'D';
             }
             break;
         case DOWN:
             while(bfs_down[TARGET]<B){
-                go_a_step(i, j, bfs_down);
+                go_a_step(i, j, bfs_down, last);
                 ans.push(make_pair(i, j));
                 map[TARGET] = 'D';
             }
             break;
         case LEFT:
             while(bfs_left[TARGET]<B){
-                go_a_step(i, j, bfs_left);
+                go_a_step(i, j, bfs_left, last);
                 ans.push(make_pair(i, j));
                 map[TARGET] = 'D';
             }
             break;
         case RIGHT:
             while(bfs_right[TARGET]<B){
-                go_a_step(i, j, bfs_right);
+                go_a_step(i, j, bfs_right, last);
                 ans.push(make_pair(i, j));
                 map[TARGET] = 'D';
             }
@@ -194,7 +260,7 @@ Action gothrough(int i, int j, const Action action, const Action next)
             while(bfs_up[TARGET]<B){
                 map[TARGET] = 'D';
                 stk.push_back(make_pair(i, j));
-                go_a_step(i, j, bfs_up);
+                go_a_step(i, j, bfs_up, action);
             }
             while(stk.empty()==false){
                 ans.push(stk.back());
@@ -208,7 +274,7 @@ Action gothrough(int i, int j, const Action action, const Action next)
             while(bfs_down[TARGET]<B){
                 map[TARGET] = 'D';
                 stk.push_back(make_pair(i, j));
-                go_a_step(i, j, bfs_down);
+                go_a_step(i, j, bfs_down, action);
             }
             while(stk.empty()==false){
                 ans.push(stk.back());
@@ -222,7 +288,7 @@ Action gothrough(int i, int j, const Action action, const Action next)
             while(bfs_left[TARGET]<B){
                 map[TARGET] = 'D';
                 stk.push_back(make_pair(i, j));
-                go_a_step(i, j, bfs_left);
+                go_a_step(i, j, bfs_left, action);
             }
             while(stk.empty()==false){
                 ans.push(stk.back());
@@ -236,7 +302,7 @@ Action gothrough(int i, int j, const Action action, const Action next)
             while(bfs_right[TARGET]<B){
                 map[TARGET] = 'D';
                 stk.push_back(make_pair(i, j));
-                go_a_step(i, j, bfs_right);
+                go_a_step(i, j, bfs_right, action);
             }
             while(stk.empty()==false){
                 ans.push(stk.back());
