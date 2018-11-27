@@ -17,12 +17,15 @@ ofstream outfile;
 
 //global variable
 int M, N, B, ri, rj;
-vector<char> map;
+vector<char> map, _map;
 vector<pair<pair<int, int>, int>> dest; //_destination: storing shortest path from 'R'
 enum Action{UP, DOWN, LEFT, RIGHT, ERROR};
 vector<pair<int, int>> stk; //reversing the step when gothrough()
 queue<pair<int, int>> ans;
 vector<int> bfs_r, bfs_up, bfs_down, bfs_left, bfs_right;
+long long anscnt;
+bool print;
+stringstream dbg;
 
 vector<int> BFS(int i, int j, vector<char> tmap, bool flag)
 {
@@ -103,6 +106,7 @@ void go_a_step(int& i, int& j, const vector<int>& bfs, const Action action)
     if(j<N-1) if(bfs[T_RIGHT]==bfs[TARGET]-1 || ((action==LEFT)&&bfs[T_RIGHT]==B)){
         j++; return;
     }
+    cout << dbg.str() << " debug\n";
 }
 Action goback(int i, int j, const Action action, const Action last, int curB)
 {
@@ -111,7 +115,10 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
             if(bfs_up[TARGET]<=curB){
                 while(bfs_up[TARGET]<B){
                     go_a_step(i, j, bfs_up, action);
-                    ans.push(make_pair(i, j));
+
+                    //ans.push(make_pair(i, j));
+                    if(print) outfile << i << ' ' << j << '\n';
+                    else anscnt++;
                     map[TARGET] = 'D';
                 }
                 return action;
@@ -119,14 +126,18 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
                 if(bfs_left[TARGET]<=curB){
                     while(bfs_left[TARGET]<B){
                         go_a_step(i, j, bfs_left, LEFT);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return LEFT;
                 } else if(bfs_right[TARGET]<=curB){
                     while(bfs_right[TARGET]<B){
                         go_a_step(i, j, bfs_right, RIGHT);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return RIGHT;
@@ -137,7 +148,9 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
             if(bfs_down[TARGET]<=curB){
                 while(bfs_down[TARGET]<B){
                     go_a_step(i, j, bfs_down, action);
-                    ans.push(make_pair(i, j));
+                    //ans.push(make_pair(i, j));
+                    if(print) outfile << i << ' ' << j << '\n';
+                    else anscnt++;
                     map[TARGET] = 'D';
                 }
                 return action;
@@ -145,14 +158,18 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
                 if(bfs_left[TARGET]<=curB){
                     while(bfs_left[TARGET]<B){
                         go_a_step(i, j, bfs_left, LEFT);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return LEFT;
                 } else if(bfs_right[TARGET]<=curB){
                     while(bfs_right[TARGET]<B){
                         go_a_step(i, j, bfs_right, RIGHT);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return RIGHT;
@@ -163,7 +180,9 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
             if(bfs_left[TARGET]<=curB){
                 while(bfs_left[TARGET]<B){
                     go_a_step(i, j, bfs_left, action);
-                    ans.push(make_pair(i, j));
+                    //ans.push(make_pair(i, j));
+                    if(print) outfile << i << ' ' << j << '\n';
+                    else anscnt++;
                     map[TARGET] = 'D';
                 }
                 return action;
@@ -171,14 +190,18 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
                 if(bfs_up[TARGET]<=curB){
                     while(bfs_up[TARGET]<B){
                         go_a_step(i, j, bfs_up, UP);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return UP;
                 } else if(bfs_down[TARGET]<=curB){
                     while(bfs_down[TARGET]<B){
                         go_a_step(i, j, bfs_down, DOWN);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return DOWN;
@@ -189,7 +212,9 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
             if(bfs_right[TARGET]<=curB){
                 while(bfs_right[TARGET]<B){
                     go_a_step(i, j, bfs_right, action);
-                    ans.push(make_pair(i, j));
+                    //ans.push(make_pair(i, j));
+                    if(print) outfile << i << ' ' << j << '\n';
+                    else anscnt++;
                     map[TARGET] = 'D';
                 }
                 return action;
@@ -197,14 +222,18 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
                 if(bfs_up[TARGET]<=curB){
                     while(bfs_up[TARGET]<B){
                         go_a_step(i, j, bfs_up, UP);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return UP;
                 } else if(bfs_down[TARGET]<=curB){
                     while(bfs_down[TARGET]<B){
                         go_a_step(i, j, bfs_down, DOWN);
-                        ans.push(make_pair(i, j));
+                        //ans.push(make_pair(i, j));
+                        if(print) outfile << i << ' ' << j << '\n';
+                        else anscnt++;
                         map[TARGET] = 'D';
                     }
                     return DOWN;
@@ -216,28 +245,36 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
         case UP:
             while(bfs_up[TARGET]<B){
                 go_a_step(i, j, bfs_up, last);
-                ans.push(make_pair(i, j));
+                //ans.push(make_pair(i, j));
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 map[TARGET] = 'D';
             }
             break;
         case DOWN:
             while(bfs_down[TARGET]<B){
                 go_a_step(i, j, bfs_down, last);
-                ans.push(make_pair(i, j));
+                //ans.push(make_pair(i, j));
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 map[TARGET] = 'D';
             }
             break;
         case LEFT:
             while(bfs_left[TARGET]<B){
                 go_a_step(i, j, bfs_left, last);
-                ans.push(make_pair(i, j));
+                //ans.push(make_pair(i, j));
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 map[TARGET] = 'D';
             }
             break;
         case RIGHT:
             while(bfs_right[TARGET]<B){
                 go_a_step(i, j, bfs_right, last);
-                ans.push(make_pair(i, j));
+                //ans.push(make_pair(i, j));
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 map[TARGET] = 'D';
             }
             break;
@@ -253,6 +290,8 @@ Action gothrough(int i, int j, const Action action, const Action next)
 
     //cout << action << ' ' << "dest:(" << i << ", " << j << ")\n";
     int curB = B;
+    int initi = i;
+    int initj = j;
 
     switch(action){
         //TODO: check battery life for better path(s)
@@ -263,11 +302,15 @@ Action gothrough(int i, int j, const Action action, const Action next)
                 go_a_step(i, j, bfs_up, action);
             }
             while(stk.empty()==false){
-                ans.push(stk.back());
+                //ans.push(stk.back());
+                i = stk.back().first; j = stk.back().second;
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 stk.pop_back();
                 curB--;
             }
-            i = ans.back().first; j = ans.back().second;
+            //i = ans.back().first; j = ans.back().second;
+            i = initi; j = initj;
             return goback(i, j, next, action, curB);
             break;
         case DOWN:
@@ -277,11 +320,15 @@ Action gothrough(int i, int j, const Action action, const Action next)
                 go_a_step(i, j, bfs_down, action);
             }
             while(stk.empty()==false){
-                ans.push(stk.back());
+                //ans.push(stk.back());
+                i = stk.back().first; j = stk.back().second;
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 stk.pop_back();
                 curB--;
             }
-            i = ans.back().first; j = ans.back().second;
+            //i = ans.back().first; j = ans.back().second;
+            i = initi; j = initj;
             return goback(i, j, next, action, curB);
             break;
         case LEFT:
@@ -291,11 +338,15 @@ Action gothrough(int i, int j, const Action action, const Action next)
                 go_a_step(i, j, bfs_left, action);
             }
             while(stk.empty()==false){
-                ans.push(stk.back());
+                //ans.push(stk.back());
+                i = stk.back().first; j = stk.back().second;
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 stk.pop_back();
                 curB--;
             }
-            i = ans.back().first; j = ans.back().second;
+            //i = ans.back().first; j = ans.back().second;
+            i = initi; j = initj;
             return goback(i, j, next, action, curB);
             break;
         case RIGHT:
@@ -305,11 +356,15 @@ Action gothrough(int i, int j, const Action action, const Action next)
                 go_a_step(i, j, bfs_right, action);
             }
             while(stk.empty()==false){
-                ans.push(stk.back());
+                //ans.push(stk.back());
+                i = stk.back().first; j = stk.back().second;
+                if(print) outfile << i << ' ' << j << '\n';
+                else anscnt++;
                 stk.pop_back();
                 curB--;
             }
-            i = ans.back().first; j = ans.back().second;
+            //i = ans.back().first; j = ans.back().second;
+            i = initi; j = initj;
             return goback(i, j, next, action, curB);
             break;
     }
@@ -334,7 +389,7 @@ Action nextaction(const int i, const int j)
         action = RIGHT;
     }
     
-    return ((minstep<B) ? action : ERROR);
+    return ((minstep<=(B/2)) ? action : ERROR);
 }
 
 void cleaning_naive()
@@ -396,6 +451,7 @@ void cleaning_naive()
         }
     }
 */
+    if(dest.empty()==true) return;
     int curi, curj, nexti, nextj;
     Action curDir, nextDir;
     bool lasttimeflag = true;
@@ -450,6 +506,7 @@ void cleaning_naive()
             else if(curDir==LEFT) curDir = gothrough(ri, rj-1, nextDir, curDir);
             else if(curDir==RIGHT) curDir = gothrough(ri, rj+1, nextDir, curDir);
         }
+        
     }
     
     try{
@@ -458,7 +515,7 @@ void cleaning_naive()
             gothrough(curi, curj, curDir, curDir);
         }
     } catch(string c){cout << c;}
-
+    
 }
 
 int main(int argc, char* argv[])
@@ -470,6 +527,7 @@ int main(int argc, char* argv[])
     stringstream strin, strout;
     strin << "./" << argv[1] << "/floor.data";
     strout << "./" << argv[1] << "/final.path";
+    dbg << argv[1];
 
     infile.open(strin.str());
     outfile.open(strout.str());
@@ -497,13 +555,21 @@ int main(int argc, char* argv[])
             }
         }
     }
+    map.shrink_to_fit();
+    _map = map;
     
     cleaning_naive();
+    outfile << anscnt << '\n';
+
+    map = _map;
+    print = true;
+    cleaning_naive();
+    /*
     outfile << ans.size() << '\n';
     while(ans.empty()==false){
         outfile << ans.front().first << ' ' << ans.front().second << '\n';
         ans.pop();
     }
-
+    */
     return 0;
 }
