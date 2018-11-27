@@ -1,0 +1,211 @@
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 103031238
+8 10 40
+103031238 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 103048213
+20 21 120
+SOME ELEMENTS ARE NOE CLEAN YET : (1,0)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 104070036
+8 13 30
+104070036 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105000017
+999 999 1996
+105000017 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105000044
+100 100 10000
+PATH THROUGH WALL : (50,49)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105021108
+242 220 1290
+105021108 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105021121
+100 150 80000
+105021121 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105021208
+3 3 100
+105021208 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105021217
+11 15 44
+JUMP STEP: (8,4) -> (8,4)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105021221
+65 69 2500
+105021221 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105021224
+5 5 10
+JUMP STEP: (2,1) -> (2,1)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105033133
+1000 1000 5000
+105033133 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105062272
+7 11 30
+105062272 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 105072145
+50 60 1250
+105072145 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106000103
+800 800 8000
+106000103 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106000105
+801 801 30000
+PATH THROUGH WALL : (9,24)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106000115
+11 31 120
+106000115 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106000212
+9 19 34
+106000212 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106000266
+7 11 35
+PATH THROUGH WALL : (4,6)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106011105
+20 50 200
+106011105 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106021229
+50 50 400
+106021229 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106033233
+500 500 25000
+SOME ELEMENTS ARE NOE CLEAN YET : (7,33)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106034071
+750 200 55555
+106034071 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062106
+10 10 40
+PATH THROUGH WALL : (2,3)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062113
+10 10 34
+106062113 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062119
+1000 1000 2000
+106062119 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062122
+1000 1000 4500
+106062122 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062130
+162 200 1009
+106062130 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062131
+13 13 24
+106062131 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062140
+7 6 8
+106062140 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062202
+1000 1000 2998
+PATH THROUGH WALL : (0,499)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062203
+1000 1000 13184
+106062203 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062210
+11 11 16
+106062210 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062222
+1000 1000 2750
+106062222 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062223
+300 500 2500
+106062223 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062230
+1000 1000 2000
+106062230 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062240
+1000 1000 2002
+106062240 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062271
+14 17 55
+106062271 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062306
+55 55 186
+106062306 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062320
+10 10 30
+PATH THROUGH WALL : (6,5)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062324
+11 22 64
+106062324 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106062361
+189 300 850
+106062361 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106070002
+15 10 28
+106070002 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106070011
+7 8 30
+PATH THROUGH WALL : (3,4)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106070032
+10 10 30
+106070032 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106070038
+301 301 603
+106070038 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106072123
+1000 1000 3940
+106072123 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 106081005
+8 10 25
+106081005 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 1071029s
+8 7 8
+1071029s PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 1071046s
+7 9 36
+PATH THROUGH WALL : (1,4)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 1071059s
+7 5 8
+JUMP STEP: (3,2) -> (3,2)!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 1071069s
+500 500 2000
+1071069s PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>a 1071070s
+15 15 56
+1071070s PASS!!CONGRATS!!
