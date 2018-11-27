@@ -115,6 +115,7 @@ Action goback(int i, int j, const Action action, const Action last, int curB)
             if(bfs_up[TARGET]<=curB){
                 while(bfs_up[TARGET]<B){
                     go_a_step(i, j, bfs_up, action);
+
                     //ans.push(make_pair(i, j));
                     if(print) outfile << i << ' ' << j << '\n';
                     else anscnt++;
