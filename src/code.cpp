@@ -31,7 +31,7 @@ vector<int> BFS(int i, int j, vector<char> tmap, bool flag)
 {
 
     vector<int> bfs(M*N,B+1);
-    if(i<0 || j<0 || i>=M || j>=N) return bfs;
+    if(i<0 || j<0 || i>=M || j>=N || map[TARGET]=='1') return bfs;
 
     queue<pair<int, int>> q;
     pair<int, int> ptr;
