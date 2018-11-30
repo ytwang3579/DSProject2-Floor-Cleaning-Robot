@@ -16,7 +16,7 @@ D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 105000044
 100 100 10000
-JUMP STEP: (49,49) -> (49,49)!!
+105000044 PASS!!CONGRATS!!
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 105021108
 242 220 1290
@@ -32,7 +32,7 @@ D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 105021217
 11 15 44
-JUMP STEP: (8,4) -> (8,4)!!
+105021217 PASS!!CONGRATS!!
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 105021221
 65 69 2500
@@ -40,7 +40,7 @@ D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 105021224
 5 5 10
-JUMP STEP: (2,1) -> (2,1)!!
+105021224 PASS!!CONGRATS!!
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 105033133
 1000 1000 5000
@@ -200,7 +200,7 @@ D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 1071059s
 7 5 8
-JUMP STEP: (3,2) -> (3,2)!!
+1071059s PASS!!CONGRATS!!
 
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 1071069s
 500 500 2000
@@ -209,3 +209,11 @@ D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-
 D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check 1071070s
 15 15 56
 1071070s PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check TA1
+1000 1000 2500
+TA1 PASS!!CONGRATS!!
+
+D:\Users\User\Documents\2018-Fall\Data Structures\W11\DSProject2-Floor-Cleaning-Robot>check TA2
+1000 1000 997100
+TA2 PASS!!CONGRATS!!

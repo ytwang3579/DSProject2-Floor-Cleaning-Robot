@@ -392,6 +392,165 @@ Action nextaction(const int i, const int j)
     return ((minstep<=(B/2)) ? action : ERROR);
 }
 
+void forwarding(Action from, Action to)
+{
+    int i = ri, j = rj;
+    switch(to){
+        case UP:
+            if(from==DOWN){
+                if(bfs_down[T_UP]<B) gothrough(i-1, j, from, to);
+                else if(bfs_left[T_UP]<B && bfs_down[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i-1, j, LEFT, to);
+                } else if(bfs_right[T_UP]<B && bfs_down[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i-1, j, RIGHT, to);
+                }
+            } else if(from==LEFT){
+                if(bfs_left[T_UP]<B) gothrough(i-1, j, from, to);
+                else if(bfs_right[T_UP]<B && bfs_left[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i-1, j, RIGHT, to);
+                } else if(bfs_down[T_UP]<B && bfs_left[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i-1, j, DOWN, to);
+                } else if(bfs_right[T_UP]<B && bfs_down[T_RIGHT]<B && bfs_left[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i, j+1, DOWN, RIGHT);
+                    gothrough(i-1, j, RIGHT, to);
+                }
+            } else if(from==RIGHT){
+                if(bfs_right[T_UP]<B) gothrough(i-1, j, from, to);
+                else if(bfs_left[T_UP]<B && bfs_right[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i-1, j, LEFT, to);
+                } else if(bfs_down[T_UP]<B && bfs_right[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i-1, j, DOWN, to);
+                } else if(bfs_left[T_UP]<B && bfs_down[T_LEFT]<B && bfs_right[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i, j-1, DOWN, LEFT);
+                    gothrough(i-1, j, LEFT, to);
+                }
+            }
+            break;
+        case DOWN:
+            if(from==UP){
+                if(bfs_up[T_DOWN]<B) gothrough(i+1, j, from, to);
+                else if(bfs_left[T_DOWN]<B && bfs_up[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i+1, j, LEFT, to);
+                } else if(bfs_right[T_DOWN]<B && bfs_up[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i+1, j, RIGHT, to);
+                }
+            } else if(from==LEFT){
+                if(bfs_left[T_DOWN]<B) gothrough(i+1, j, from, to);
+                else if(bfs_right[T_DOWN]<B && bfs_left[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i+1, j, RIGHT, to);
+                } else if(bfs_down[T_DOWN]<B && bfs_left[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i+1, j, UP, to);
+                } else if(bfs_right[T_DOWN]<B && bfs_up[T_RIGHT]<B && bfs_left[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i, j+1, UP, RIGHT);
+                    gothrough(i+1, j, RIGHT, to);
+                }
+            } else if(from==RIGHT){
+                if(bfs_right[T_DOWN]<B) gothrough(i+1, j, from, to);
+                else if(bfs_left[T_DOWN]<B && bfs_right[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i+1, j, LEFT, to);
+                } else if(bfs_up[T_DOWN]<B && bfs_right[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i+1, j, UP, to);
+                } else if(bfs_left[T_DOWN]<B && bfs_up[T_LEFT]<B && bfs_right[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i, j-1, UP, LEFT);
+                    gothrough(i+1, j, LEFT, to);
+                }
+            }
+            break;
+        case LEFT:
+            if(from==RIGHT){
+                if(bfs_right[T_LEFT]<B) gothrough(i, j-1, from, to);
+                else if(bfs_up[T_LEFT]<B && bfs_right[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i, j-1, UP, to);
+                } else if(bfs_down[T_LEFT]<B && bfs_right[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i, j-1, DOWN, to);
+                }
+            } else if(from==UP){
+                if(bfs_up[T_LEFT]<B) gothrough(i, j-1, from, to);
+                else if(bfs_down[T_LEFT]<B && bfs_up[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i, j-1, DOWN, to);
+                } else if(bfs_right[T_LEFT]<B && bfs_up[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i, j-1, RIGHT, to);
+                } else if(bfs_down[T_LEFT]<B && bfs_right[T_DOWN]<B && bfs_up[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i+1, j, RIGHT, DOWN);
+                    gothrough(i, j-1, DOWN, to);
+                }
+            } else if(from==DOWN){
+                if(bfs_down[T_LEFT]<B) gothrough(i, j-1, from, to);
+                else if(bfs_up[T_LEFT]<B && bfs_down[T_UP]<B){
+                    gothrough(i+1, j, from, UP);
+                    gothrough(i, j-1, UP, to);
+                } else if(bfs_right[T_LEFT]<B && bfs_down[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i, j-1, RIGHT, to);
+                } else if(bfs_up[T_LEFT]<B && bfs_right[T_UP]<B && bfs_down[T_RIGHT]<B){
+                    gothrough(i, j+1, from, RIGHT);
+                    gothrough(i-1, j, RIGHT, UP);
+                    gothrough(i, j-1, UP, to);
+                }
+            }
+            break;
+        case RIGHT:
+            if(from==LEFT){
+                if(bfs_left[T_RIGHT]<B) gothrough(i, j+1, from, to);
+                else if(bfs_up[T_RIGHT]<B && bfs_left[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i, j+1, UP, to);
+                } else if(bfs_down[T_RIGHT]<B && bfs_left[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i, j+1, DOWN, to);
+                }
+            } else if(from==UP){
+                if(bfs_up[T_RIGHT]<B) gothrough(i, j+1, from, to);
+                else if(bfs_down[T_RIGHT]<B && bfs_up[T_DOWN]<B){
+                    gothrough(i+1, j, from, DOWN);
+                    gothrough(i, j+1, DOWN, to);
+                } else if(bfs_left[T_RIGHT]<B && bfs_up[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i, j+1, LEFT, to);
+                } else if(bfs_down[T_RIGHT]<B && bfs_left[T_DOWN]<B && bfs_up[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i+1, j, LEFT, DOWN);
+                    gothrough(i, j+1, DOWN, to);
+                }
+            } else if(from==DOWN){
+                if(bfs_down[T_RIGHT]<B) gothrough(i, j+1, from, to);
+                else if(bfs_up[T_RIGHT]<B && bfs_down[T_UP]<B){
+                    gothrough(i-1, j, from, UP);
+                    gothrough(i, j+1, UP, to);
+                } else if(bfs_left[T_RIGHT]<B && bfs_down[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i, j+1, LEFT, to);
+                } else if(bfs_up[T_RIGHT]<B && bfs_left[T_UP]<B && bfs_down[T_LEFT]<B){
+                    gothrough(i, j-1, from, LEFT);
+                    gothrough(i-1, j, LEFT, UP);
+                    gothrough(i, j+1, UP, to);
+                }
+            }
+            break;
+    }
+}
+
 void cleaning_naive()
 {
 
@@ -501,10 +660,8 @@ void cleaning_naive()
         //cout << "**\n";
         //cout << curDir << "<-" << nextDir << '\n';
         if(curDir!=nextDir){
-            if(curDir==UP) curDir = gothrough(ri-1, rj, nextDir, curDir);
-            else if(curDir==DOWN) curDir = gothrough(ri+1, rj, nextDir, curDir);
-            else if(curDir==LEFT) curDir = gothrough(ri, rj-1, nextDir, curDir);
-            else if(curDir==RIGHT) curDir = gothrough(ri, rj+1, nextDir, curDir);
+            forwarding(nextDir, curDir);
+            nextDir = curDir;
         }
         
     }
