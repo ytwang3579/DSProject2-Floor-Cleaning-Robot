@@ -19,7 +19,6 @@ check 106000212
 check 106000266
 check 106011105
 check 106021229
-check 106033233
 check 106034071
 check 106062106
 check 106062113
@@ -51,3 +50,5 @@ check 1071046s
 check 1071059s
 check 1071069s
 check 1071070s
+check TA1
+check TA2

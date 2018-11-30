@@ -557,6 +557,7 @@ void cleaning_naive()
     bfs_r = BFS(ri, rj, map, 1);
     //vector<pair<pair<int, int>, int>> dest = _dest;
     //_dest.clear();
+    
 
     bfs_up = BFS(ri-1, rj, map, 0);
     //vector<pair<pair<int, int>, int>> dest_up = _dest;
@@ -624,7 +625,7 @@ void cleaning_naive()
         int i = dest.back().first.first;
         int j = dest.back().first.second;
 
-        //cout << i << ' ' << j << ' ' << dest.back().second << '\n';
+        //cout << "** " <<  i << ' ' << j << ' ' << dest.back().second << '\n';
         
         if(map[TARGET]!='0'){
             dest.pop_back(); continue;
@@ -639,31 +640,34 @@ void cleaning_naive()
             nextDir = gothrough(curi, curj, curDir, nextDir);
         } catch(string c){cout << c;}
 
-        while(map[TARGET]!='0'){
-            //cout << i << ' ' << j << ' ' << map[TARGET] << '\n';
-            dest.pop_back();
-            if(dest.empty()==true){
-                lasttimeflag = false;
-                break;
+        do{
+            while(map[TARGET]!='0'){
+                //cout << i << ' ' << j << ' ' << map[TARGET] << bfs_r[TARGET] << '\n';
+                dest.pop_back();
+                if(dest.empty()==true){
+                    lasttimeflag = false;
+                    break;
+                }
+                i = dest.back().first.first; j = dest.back().first.second;
             }
-            i = dest.back().first.first; j = dest.back().first.second;
-        }
-        
+            
+            if(dest.empty()==true) break;
+            curi = i;
+            curj = j;
+            curDir = nextaction(i, j);
+            
 
-        curi = i;
-        curj = j;
-        curDir = nextaction(i, j);
+            //cout << i << ' ' << j << ' ' << bfs_r[TARGET] << '\n';
+            //cout << "**\n";
+            //cout << curDir << "<-" << nextDir << '\n';
+            if(curDir!=nextDir){
+                forwarding(nextDir, curDir);
+                nextDir = curDir;
+            }
+        } while(map[TARGET]!='0');
+
         if(dest.empty()==false) dest.pop_back();
         else break;
-
-        //cout << i << ' ' << j << ' ' << map[TARGET] << '\n';
-        //cout << "**\n";
-        //cout << curDir << "<-" << nextDir << '\n';
-        if(curDir!=nextDir){
-            forwarding(nextDir, curDir);
-            nextDir = curDir;
-        }
-        
     }
     
     try{
@@ -721,6 +725,7 @@ int main(int argc, char* argv[])
     map = _map;
     print = true;
     cleaning_naive();
+
     /*
     outfile << ans.size() << '\n';
     while(ans.empty()==false){
