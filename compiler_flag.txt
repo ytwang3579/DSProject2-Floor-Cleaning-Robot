@@ -1,0 +1,3 @@
+g++ ./code.cpp --std=c++11 -O3
+
+Reasons: To boost execution time
